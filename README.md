@@ -8,5 +8,8 @@ format - dd/mm/yyyy
 
 first modif - 06/01/2025
 
-tomorrow is when i will continue the project thanks
+07/01/2025 - tomorrow is when i will continue the project thanks
 grab
+
+08/01/2025 - i made the element move but its spawning random numbers lol
+its weird hehe lol
