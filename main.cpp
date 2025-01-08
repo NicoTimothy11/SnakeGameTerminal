@@ -12,7 +12,7 @@ int main() {
     const int columns = 20;
 
     while(gameOver == false) {
-    int array[rows][columns] = { 0 };
+        int array[rows][columns] = { 0 };
 
         cout << "Enter a character to move: ";
         ch = getch();
@@ -24,8 +24,7 @@ int main() {
             for (int i = 0; i < rows; i++) {
                 for(int j = 0; j < columns; j++)
                 {
-                    array[5][3] = 0;
-                    array[5][4] = 3;
+                    array[5][3 + 1];
                 }
             }
         }
