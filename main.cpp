@@ -8,29 +8,46 @@ int main() {
     bool gameOver = false;
     char ch;
 
-    const int rows = 20;
-    const int columns = 20;
+    const int rows = 10;
+    const int columns = 10;
+
+        int array[rows][columns] = { 0 };
+        int x = 5;
+        int y = 3;
+        array[x][y] = 3;
+        int prev_pos = 0;
+
+        for (int i = 0; i < rows; i++) {
+            for(int j = 0; j < columns; j++)
+            {
+                cout << array[i][j] << " ";
+            }
+            cout << endl;
+        }
 
     while(gameOver == false) {
-        int array[rows][columns] = { 0 };
 
         cout << "Enter a character to move: ";
         ch = getch();
+        
         cout << endl;
-        array[5][3] = 3;
+        while(ch = 'd') {
+            ch = getch();
 
-        if(ch == 'd') 
-        {
             for (int i = 0; i < rows; i++) {
                 for(int j = 0; j < columns; j++)
                 {
-                    array[5][3 + 1];
+                    array[x][j + y];
+                    cout << array[i][j] << " ";
                 }
+                cout << endl;
             }
-        }
-        if(ch == 'a') {
+
+            if(ch == 'a') {
             break;
-        }        
+            }  
+        }
+              
 
 
         for (int i = 0; i < rows; i++) {
