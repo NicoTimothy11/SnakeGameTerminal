@@ -15,7 +15,6 @@ int main() {
         int x = 5;
         int y = 3;
         array[x][y] = 3;
-        int prev_pos = 0;
 
         for (int i = 0; i < rows; i++) {
             for(int j = 0; j < columns; j++)
