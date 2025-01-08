@@ -36,7 +36,7 @@ int main() {
             for (int i = 0; i < rows; i++) {
                 for(int j = 0; j < columns; j++)
                 {
-                    array[x][j + y];
+                    array[i][j] = array[i][j + 1];
                     cout << array[i][j] << " ";
                 }
                 cout << endl;
@@ -49,12 +49,12 @@ int main() {
               
 
 
-        for (int i = 0; i < rows; i++) {
+        /*for (int i = 0; i < rows; i++) {
             for(int j = 0; j < columns; j++) {
                 cout << array[i][j] << " ";
             }
             cout << endl;
-        }
+        } */
         
         if(gameOver = true) {
             break;
