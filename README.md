@@ -16,3 +16,5 @@ its weird hehe lol
 
 09/01/2025 - i got confused on how to make this game and i still know little about its logic 
 learning data structs like array/vector is hard but i'll learn a lot
+
+10/01/2025 - im continuing the project so i can make it cool lol
