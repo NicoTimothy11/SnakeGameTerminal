@@ -8,7 +8,7 @@ int main() {
 
     int rows = 10, columns = 10;
 
-    vector<int> snakeBody = {0, 0, 0};
+    vector<char> snakeBody = {'0', '0', '0'};
 
     vector<vector<char>> Grid(rows, vector<char>(columns, '*'));
 
@@ -18,6 +18,11 @@ int main() {
             Grid[9][i] = '#';
             Grid[j][0] = '#';
             Grid[0][j] = '#';
+
+            Grid[2][2] = snakeBody[0];
+            Grid[2][3] = snakeBody[1];
+            Grid[2][4] = snakeBody[2];
+
             cout << Grid[i][j] << " ";
         }
         cout << endl;
