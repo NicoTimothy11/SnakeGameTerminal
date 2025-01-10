@@ -41,7 +41,7 @@ int main() {
         if(ch == 'd') {
             Grid[2][2] = snakeBody[2];
             Grid[2][3] = snakeBody[1];
-            Grid[2][4] = snakeBody[0];
+            Grid[2][4 + 1] = snakeBody[0];
         }
         if(ch == 'a') {
             gameOver = true;
