@@ -8,7 +8,7 @@ class Grid {
     public:
         int rows = 10;
         int columns = 10;
-        static char board[rows * columns];
+        static char board[];
 };
 
 class Snake {
@@ -19,12 +19,13 @@ class Snake {
 class Game {
     public:
         Grid grid;
+        grid.board[grid.rows * grid.columns];
 
         void DrawBoard() {
             for (int x = 0; x < grid.rows; x++) {
                 for (int y = 0; y < grid.columns; y++) {
                     if(x == 0 || y == 0 || x == grid.columns - 1 || y == grid.rows - 1) {
-
+                        
                     }
                 }
             }
