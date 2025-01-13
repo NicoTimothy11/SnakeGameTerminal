@@ -5,10 +5,32 @@
 using namespace std;
 
 class Grid {
+    protected:
+        int rows = 20;
+        int columns = 20;
+        char board[20][20];
+
     public:
-        int rows = 10;
-        int columns = 10;
-        static char board[];
+        Grid() {
+            for (int i = 0; i < 20; i++) {
+                for (int j = 0; j < 20; j++) {
+                        board[i][j] = ' ';
+                        board[19][j] = '#';
+                        board[0][j] = '#';
+                        board[i][19] = '#';
+                        board[i][0] = '#';
+                    }
+                }
+            }
+
+        void printBoard() {
+            for (int i = 0; i < 20; i++) {
+                for (int j = 0; j < 20; j++) {
+                    cout << board[i][j] << " ";
+                }
+                cout << endl;
+            }
+        }
 };
 
 class Snake {
@@ -16,7 +38,7 @@ class Snake {
         int length;
 };
 
-class Game {
+/*class Game {
     public:
         Grid grid;
         grid.board[grid.rows * grid.columns];
@@ -32,9 +54,11 @@ class Game {
         };
         void HandleUpdate();
         void ClearScreen();
-};
+};*/
 
 int main() {
+    Grid grid;
 
+    grid.printBoard();
     return 0; 
 }
