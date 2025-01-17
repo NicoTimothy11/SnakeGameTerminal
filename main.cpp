@@ -9,26 +9,44 @@ class Grid {
         int rows = 20;
         int columns = 20;
         char board[20][20];
+        Snake snake;
 
     public:
         Grid() {
             for (int i = 0; i < 20; i++) {
                 for (int j = 0; j < 20; j++) {
-                        board[i][j] = ' ';
-                        board[19][j] = '#';
-                        board[0][j] = '#';
-                        board[i][19] = '#';
-                        board[i][0] = '#';
+                        if(i == 0 || i == rows-1 || j == 0 || j == columns-1) {
+                            board[i][j] = '#';
+                        }
+                        else {
+                            board[i][j] = ' ';
+                        }
                     }
                 }
             }
 
         void printBoard() {
-            for (int i = 0; i < 20; i++) {
-                for (int j = 0; j < 20; j++) {
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
                     cout << board[i][j] << " ";
                 }
                 cout << endl;
+            }
+        }
+
+        void MoveSnake(int dx, int dy) {
+            snake.x += dx;
+            snake.y += dy;
+        }
+
+        void handleInput() {
+            char ch = getch();
+
+            switch(ch) {
+                case 'w' :
+                case 'a' :
+                case 's' :
+                case 'd' :
             }
         }
 };
@@ -36,25 +54,11 @@ class Grid {
 class Snake {
     public:
         int length;
+        int x;
+        int y;
+        int part[256];
 };
 
-/*class Game {
-    public:
-        Grid grid;
-        grid.board[grid.rows * grid.columns];
-
-        void DrawBoard() {
-            for (int x = 0; x < grid.rows; x++) {
-                for (int y = 0; y < grid.columns; y++) {
-                    if(x == 0 || y == 0 || x == grid.columns - 1 || y == grid.rows - 1) {
-                        
-                    }
-                }
-            }
-        };
-        void HandleUpdate();
-        void ClearScreen();
-};*/
 
 int main() {
     Grid grid;
