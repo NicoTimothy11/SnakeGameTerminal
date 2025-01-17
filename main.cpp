@@ -4,6 +4,15 @@
 
 using namespace std;
 
+
+class Snake {
+    public:
+        int length = 256;
+        int x;
+        int y;
+        int part[256];
+};
+
 class Grid {
     protected:
         int rows = 20;
@@ -34,12 +43,7 @@ class Grid {
             }
         }
 
-        void MoveSnake(int dx, int dy) {
-            snake.x += dx;
-            snake.y += dy;
-        }
-
-        void handleInput() {
+        /*void handleInput() {
             char ch = getch();
 
             switch(ch) {
@@ -48,15 +52,11 @@ class Grid {
                 case 's' :
                 case 'd' :
             }
-        }
-};
+        }*/
 
-class Snake {
-    public:
-        int length;
-        int x;
-        int y;
-        int part[256];
+        void DrawSnake() {
+            board[0][4] = '@';
+        }
 };
 
 
@@ -64,5 +64,6 @@ int main() {
     Grid grid;
 
     grid.printBoard();
+    grid.DrawSnake();
     return 0; 
 }
