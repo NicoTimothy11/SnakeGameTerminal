@@ -10,7 +10,11 @@ class Snake {
         int length = 256;
         int x;
         int y;
-        int part[256];
+        int part[];
+
+        Snake() {
+            part[length];
+        }
 };
 
 class Grid {
@@ -43,27 +47,41 @@ class Grid {
             }
         }
 
-        /*void handleInput() {
-            char ch = getch();
+        void handleInput() {
+            int ch = getch();
 
             switch(ch) {
-                case 'w' :
-                case 'a' :
-                case 's' :
-                case 'd' :
+                case 'w' : HandleInput(0, -1); break;
+                case 'a' : HandleInput(0, 1); break;
+                case 's' : HandleInput(-1, 0); break;
+                case 'd' : HandleInput(1, 0); break;
+        
             }
-        }*/
+        }
 
         void DrawSnake() {
-            board[0][4] = '@';
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
+                    if(i == 3 && j == 3) {
+                        board[i][j] = '@';
+                    }
+                }
+            }
         }
+
+        void HandleInput(int dx, int dy) {
+            snake.x += dx;
+            snake.y += dy;
+        }
+
 };
 
 
 int main() {
     Grid grid;
 
-    grid.printBoard();
     grid.DrawSnake();
+    grid.printBoard();
+    grid.handleInput();
     return 0; 
 }
