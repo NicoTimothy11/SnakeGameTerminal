@@ -4,12 +4,13 @@
 
 using namespace std;
 
+bool isGameOver = false;
 
 class Snake {
     public:
         int length = 256;
-        int x;
-        int y;
+        int x = 2;
+        int y = 2;
         int part[];
 
         Snake() {
@@ -47,31 +48,27 @@ class Grid {
             }
         }
 
+
+        void DrawSnake() {
+            board[snake.x][snake.y] = '@';
+        }
+
+        void MoveSnake(int dx, int dy) {
+            snake.x += dx;
+            snake.y += dy;
+        }
+
         void handleInput() {
             int ch = getch();
 
             switch(ch) {
-                case 'w' : HandleInput(0, -1); break;
-                case 'a' : HandleInput(0, 1); break;
-                case 's' : HandleInput(-1, 0); break;
-                case 'd' : HandleInput(1, 0); break;
+                case 'w' : MoveSnake(0, 1); break;
+                case 'a' : MoveSnake(0, 1); break;
+                case 's' : MoveSnake(-1, 0); break;
+                case 'd' : MoveSnake(1, 0); break;
+                case 'q' : isGameOver = true; break;
         
             }
-        }
-
-        void DrawSnake() {
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < columns; j++) {
-                    if(i == 3 && j == 3) {
-                        board[i][j] = '@';
-                    }
-                }
-            }
-        }
-
-        void HandleInput(int dx, int dy) {
-            snake.x += dx;
-            snake.y += dy;
         }
 
 };
@@ -80,8 +77,10 @@ class Grid {
 int main() {
     Grid grid;
 
-    grid.DrawSnake();
-    grid.printBoard();
-    grid.handleInput();
+    while(!isGameOver) {
+        grid.printBoard();
+        grid.DrawSnake();
+        grid.handleInput();
+    }
     return 0; 
 }
