@@ -26,6 +26,7 @@ class Grid {
         Snake snake;
 
     public:
+
         Grid() {
             for (int i = 0; i < 20; i++) {
                 for (int j = 0; j < 20; j++) {
@@ -62,10 +63,10 @@ class Grid {
             int ch = getch();
 
             switch(ch) {
-                case 'w' : MoveSnake(0, 1); break;
-                case 'a' : MoveSnake(0, 1); break;
-                case 's' : MoveSnake(-1, 0); break;
-                case 'd' : MoveSnake(1, 0); break;
+                case 'w' : MoveSnake(-1, 0); break;
+                case 'a' : MoveSnake(0, -1); break;
+                case 's' : MoveSnake(1, 0); break;
+                case 'd' : MoveSnake(0, 1); break;
                 case 'q' : isGameOver = true; break;
         
             }
