@@ -20,14 +20,22 @@ class Snake {
 
 class Grid {
     protected:
-        int rows = 20;
-        int columns = 20;
-        char board[20][20];
+        static const int rows = 20;
+        static const int columns = 20;
+        char board[rows][columns];
         Snake snake;
 
     public:
 
         Grid() {
+            for (int i = 0; i < 20; i++) {
+                for (int j = 0; j < 20; j++) {
+                        board[i][j] = ' ';
+                    }
+                }
+        }
+
+        void fillBoard() {
             for (int i = 0; i < 20; i++) {
                 for (int j = 0; j < 20; j++) {
                         if(i == 0 || i == rows-1 || j == 0 || j == columns-1) {
@@ -38,7 +46,7 @@ class Grid {
                         }
                     }
                 }
-            }
+        }
 
         void printBoard() {
             for (int i = 0; i < rows; i++) {
@@ -80,6 +88,7 @@ int main() {
 
     while(!isGameOver) {
         grid.printBoard();
+        grid.fillBoard();
         grid.DrawSnake();
         grid.handleInput();
     }
