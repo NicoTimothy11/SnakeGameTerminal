@@ -68,7 +68,7 @@ class Grid {
         }
 
         void handleInput() {
-            int ch = getch();
+            char ch = getch();
 
             switch(ch) {
                 case 'w' : MoveSnake(-1, 0); break;
