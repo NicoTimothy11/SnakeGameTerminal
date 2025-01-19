@@ -79,6 +79,9 @@ class Grid {
         
             }
         }
+        void ClearScreen() {
+            system("cls");
+        }
 
 };
 
@@ -91,6 +94,7 @@ int main() {
         grid.fillBoard();
         grid.DrawSnake();
         grid.handleInput();
+        grid.ClearScreen();
     }
     return 0; 
 }
