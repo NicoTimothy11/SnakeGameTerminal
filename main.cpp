@@ -6,17 +6,13 @@ using namespace std;
 
 bool isGameOver = false;
 
-class SnakePart {
-    public:
-        int x, y;
-};
 
 class Snake {
     public:
         int length = 256;
         int x = 2;
         int y = 2;
-        static int part[];
+        int part[];
 
         Snake() {
             part[length];
@@ -75,6 +71,7 @@ class Grid {
             snake.x += dx;
             snake.y += dy;
         }
+
 
         void handleInput() {
             char ch = getch();
