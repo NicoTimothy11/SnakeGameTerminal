@@ -6,12 +6,17 @@ using namespace std;
 
 bool isGameOver = false;
 
+class SnakePart {
+    public:
+        int x, y;
+};
+
 class Snake {
     public:
         int length = 256;
         int x = 2;
         int y = 2;
-        int part[];
+        static int part[];
 
         Snake() {
             part[length];
@@ -59,6 +64,10 @@ class Grid {
 
 
         void DrawSnake() {
+
+            for(int i = snake.length-1; i > 0; i--) {
+                board[snake.part[0]][snake.part[0]] = '*';
+            }
             board[snake.x][snake.y] = '@';
         }
 
@@ -79,6 +88,7 @@ class Grid {
         
             }
         }
+
         void ClearScreen() {
             system("cls");
         }
