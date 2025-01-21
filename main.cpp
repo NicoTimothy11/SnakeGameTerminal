@@ -1,168 +1,170 @@
-#include <iostream>
-#include <cstdlib>
-#include <conio.h>
+    #include <iostream>
+    #include <cstdlib>
+    #include <conio.h>
 
-using namespace std;
+    using namespace std;
 
-bool isGameOver = false;
+    class SnakePart {
+        public:
+            int x, y;
+            SnakePart(int x = 0, int y = 0) : x(x), y(y) {}
+    };
 
-class SnakePart {
-    public:
-        int x, y;
-        SnakePart(int x = 0, int y = 0) : x(x), y(y) {}
-};
+    class Snake {
+        public:
+            static const int SnakeLength = 256;
+            int length;
+            SnakePart parts[SnakeLength];
 
-class Snake {
-    public:
-        static const int SnakeLength = 256;
-        int length;
-        SnakePart parts[SnakeLength];
+            Snake() {
+                length = 1;
+                parts[0].x = 1 + rand() % (20 - 2);
+                parts[0].y = 1 + rand() % (20 - 2);
 
-        Snake() {
-            length = 1;
-            parts[0].x = 1 + rand() % (20 - 2);
-            parts[0].y = 1 + rand() % (20 - 2);
-
-            for(int i = 1; i < SnakeLength; i++) {
-                parts[i].x = 0;
-                parts[i].y = 0;
-            }
-        }
-
-        int getLength() {
-            return length;
-        }
-
-        SnakePart& getHead() {
-            return parts[0];
-        }
-
-        SnakePart& getPart(int index){
-            return parts[index];
-        }
-
-        void move(int dX, int dY) {
-            for(int i = length - 1; i > 0; i--) {
-                parts[i] = parts[i - 1];
-            }
-            parts[0].x += dX;
-            parts[0].y += dY;
-        }
-
-        void grow() {
-            if(length < SnakeLength) {
-                parts[length] = parts[length - 1];
-                length++;
-            }
-        }
-
-        bool collideWithSelf() {
-            for(int i = 1; i < length; i++) {
-                if(parts[0].x == parts[i].x & parts[0].y == parts[i].y ) {
-                    return true;
+                for(int i = 1; i < SnakeLength; i++) {
+                    parts[i].x = 0;
+                    parts[i].y = 0;
                 }
             }
-            return false;
-        }
 
-};
+            int getLength() {
+                return length;
+            }
 
+            SnakePart& getHead() {
+                return parts[0];
+            }
 
+            SnakePart& getPart(int index){
+                return parts[index];
+            }
 
-class Game {
-    protected:
-        static const int rows = 20;
-        static const int columns = 20;
-        char board[rows][columns];
-        Snake snake;
+            void move(int dX, int dY) {
+                for(int i = length - 1; i > 0; i--) {
+                    parts[i] = parts[i - 1];
+                }
+                parts[0].x += dX;
+                parts[0].y += dY;
+            }
 
-    public:
+            void grow() {
+                if(length < SnakeLength) {
+                    parts[length] = parts[length - 1];
+                    length++;
+                }
+            }
 
-        Game() {
-            for (int i = 0; i < 20; i++) {
-                for (int j = 0; j < 20; j++) {
-                        board[i][j] = ' ';
+            bool collideWithSelf() {
+                for(int i = 1; i < length; i++) {
+                    if(parts[0].x == parts[i].x & parts[0].y == parts[i].y ) {
+                        return true;
                     }
                 }
-        }
+                return false;
+            }
 
-        void fillBoard() {
-            for (int i = 0; i < 20; i++) {
-                for (int j = 0; j < 20; j++) {
-                        if(i == 0 || i == rows-1 || j == 0 || j == columns-1) {
-                            board[i][j] = '#';
-                        }
-                        else {
+    };
+
+
+
+    class Game {
+        protected:
+            static const int rows = 20;
+            static const int columns = 20;
+            char board[rows][columns];
+            Snake snake;
+            bool isGameOver;
+
+        public:
+
+            Game() {
+                isGameOver = false;
+                for (int i = 0; i < 20; i++) {
+                    for (int j = 0; j < 20; j++) {
                             board[i][j] = ' ';
                         }
                     }
-                }
-        }
+            }
 
-        void printBoard() {
-            for (int i = 0; i < rows; i++) {
+            void fillBoard() {
+                for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < columns; j++) {
-                    cout << board[i][j] << " ";
-                }
-                cout << endl;
-            }
-        }
-
-
-        void DrawSnake() {
-
-            for(int i = 1; i < snake.getLength(); i++) {
-                SnakePart part = snake.getPart(i);
-                board[part.y][part.x] = '*';
-            }
-            board[snake.getHead().y][snake.getHead().x] = '@';
-        }
-
-        void gameRules() {
-            SnakePart& head = snake.getHead();
-            if(head.x == 0 || head.x == columns - 1 || head.y == 0 || head.y == rows -1 ) {
-                isGameOver = true;
-            }
-            if(snake.collideWithSelf()) {
-                isGameOver = true;
-            }
-        }
-
-
-        void handleInput() {
-
-            if(_kbhit()) {
-                char ch = getch();
-
-                switch(ch) {
-                    case 'w' : snake.move(-1, 0); break;
-                    case 'a' : snake.move(0, -1); break;
-                    case 's' : snake.move(1, 0); break;
-                    case 'd' : snake.move(0, 1); break;
-                    case 'q' : isGameOver = true; break;
+                if (i == 0 || i == rows - 1 || j == 0 || j == columns - 1) {
+                    board[i][j] = '#'; // Keep borders
+                } else {
+                    board[i][j] = ' '; // Empty space by default
                 }
             }
         }
+    }
 
-        void ClearScreen() {
-            system("cls");
-        }
 
-        void Run() {
-            while(!isGameOver) {
-                fillBoard();
-                DrawSnake();
-                ClearScreen();
-                printBoard();
-                if(!isGameOver) handleInput();
+            void printBoard() {
+                for (int i = 0; i < rows; i++) {
+                    for (int j = 0; j < columns; j++) {
+                        cout << board[i][j] << " ";
+                    }
+                    cout << endl;
+                }
             }
-        }
-
-};
 
 
-int main() {
-    Game *game;
-    game->Run();
-    return 0; 
-}
+            void DrawSnake() {
+
+                for(int i = 1; i < snake.getLength(); i++) {
+                    SnakePart part = snake.getPart(i);
+                    board[part.y][part.x] = '*';
+                }
+                board[snake.getHead().y][snake.getHead().x] = '@';
+            }
+
+            void gameRules() {
+                SnakePart& head = snake.getHead();
+                if(head.x == 0 || head.x == columns - 1 || head.y == 0 || head.y == rows -1 ) {
+                    isGameOver = true;
+                }
+                if(snake.collideWithSelf()) {
+                    isGameOver = true;
+                }
+            }
+
+            void handleInput() {
+
+                if(_kbhit()) {
+                    char ch = getch();
+
+                    switch(ch) {
+                        case 'w' : snake.move(-1, 0); break;
+                        case 'a' : snake.move(0, -1); break;
+                        case 's' : snake.move(1, 0); break;
+                        case 'd' : snake.move(0, 1); break;
+                        case 'q' : isGameOver = true; break;
+                    }
+                }
+            }
+
+            void ClearScreen() {
+                system("cls");
+            }
+
+            void Run() {
+                while(!isGameOver) {
+                    fillBoard();
+                    DrawSnake();
+                    gameRules();
+                    ClearScreen();
+                    printBoard();
+                    if(!isGameOver) handleInput();
+                }
+
+                cout << "Game Over" << endl;
+            }
+
+    };
+
+
+    int main() {
+        Game game;
+        game.Run();
+        return 0; 
+    }
