@@ -29,6 +29,10 @@ class Snake {
             }
         }
 
+        int getLength() {
+            return length;
+        }
+
         SnakePart& getHead() {
             return parts[0];
         }
@@ -74,7 +78,7 @@ class Game {
 
     public:
 
-        Grid() {
+        Game() {
             for (int i = 0; i < 20; i++) {
                 for (int j = 0; j < 20; j++) {
                         board[i][j] = ' ';
@@ -107,16 +111,14 @@ class Game {
 
         void DrawSnake() {
 
-            for(int i = snake.length-1; i > 0; i--) {
-                board[snake.part[0]][snake.part[0]] = '*';
+            for(int i = 1; i < snake.getLength(); i++) {
+                SnakePart part = snake.getPart(i);
+                board[part.y][part.x] = '*';
             }
-            board[snake.x][snake.y] = '@';
+            board[snake.getHead().y][snake.getHead().x] = '@';
         }
 
-        void MoveSnake(int dx, int dy) {
-            snake.x += dx;
-            snake.y += dy;
-        }
+        void 
 
 
         void handleInput() {
