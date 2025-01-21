@@ -6,16 +6,24 @@ using namespace std;
 
 bool isGameOver = false;
 
+class SnakePart {
+    public:
+        int x, y;
+        SnakePart(int x = 0, int y = 0) : x(x), y(y) {}
+};
 
 class Snake {
     public:
-        int length = 256;
-        int x = 2;
-        int y = 2;
-        int part[];
+        static const int SnakeLength = 256;
+        int length;
+        SnakePart parts[SnakeLength];
 
         Snake() {
-            part[length];
+            length = 1;
+            parts[0].x = 1 + rand() % (20 - 2);
+            parts[0].y = 1 + rand() % (20 - 2);
+
+            for(int i = 1; i < )
         }
 };
 
@@ -97,9 +105,9 @@ int main() {
     Grid grid;
 
     while(!isGameOver) {
-        grid.printBoard();
         grid.fillBoard();
         grid.DrawSnake();
+        grid.printBoard();
         grid.handleInput();
         grid.ClearScreen();
     }
