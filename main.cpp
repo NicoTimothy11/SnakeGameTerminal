@@ -23,11 +23,49 @@ class Snake {
             parts[0].x = 1 + rand() % (20 - 2);
             parts[0].y = 1 + rand() % (20 - 2);
 
-            for(int i = 1; i < )
+            for(int i = 1; i < SnakeLength; i++) {
+                parts[i].x = 0;
+                parts[i].y = 0;
+            }
         }
+
+        SnakePart& getHead() {
+            return parts[0];
+        }
+
+        SnakePart& getPart(int index){
+            return parts[index];
+        }
+
+        void move(int dX, int dY) {
+            for(int i = length - 1; i > 0; i--) {
+                parts[i] = parts[i - 1];
+            }
+            parts[0].x += dX;
+            parts[0].y += dY;
+        }
+
+        void grow() {
+            if(length < SnakeLength) {
+                parts[length] = parts[length - 1];
+                length++;
+            }
+        }
+
+        bool collideWithSelf() {
+            for(int i = 1; i < length; i++) {
+                if(parts[0].x == parts[i].x & parts[0].y == parts[i].y ) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
 };
 
-class Grid {
+
+
+class Game {
     protected:
         static const int rows = 20;
         static const int columns = 20;
@@ -102,14 +140,14 @@ class Grid {
 
 
 int main() {
-    Grid grid;
+    Game *game;
 
     while(!isGameOver) {
-        grid.fillBoard();
-        grid.DrawSnake();
-        grid.printBoard();
-        grid.handleInput();
-        grid.ClearScreen();
+        game->ClearScreen   ();
+        game->DrawSnake();
+        game->printBoard();
+        game->handleInput();
+        game->ClearScreen();
     }
     return 0; 
 }
