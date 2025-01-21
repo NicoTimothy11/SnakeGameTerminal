@@ -118,19 +118,29 @@ class Game {
             board[snake.getHead().y][snake.getHead().x] = '@';
         }
 
-        void 
+        void gameRules() {
+            SnakePart& head = snake.getHead();
+            if(head.x == 0 || head.x == columns - 1 || head.y == 0 || head.y == rows -1 ) {
+                isGameOver = true;
+            }
+            if(snake.collideWithSelf()) {
+                isGameOver = true;
+            }
+        }
 
 
         void handleInput() {
-            char ch = getch();
 
-            switch(ch) {
-                case 'w' : MoveSnake(-1, 0); break;
-                case 'a' : MoveSnake(0, -1); break;
-                case 's' : MoveSnake(1, 0); break;
-                case 'd' : MoveSnake(0, 1); break;
-                case 'q' : isGameOver = true; break;
-        
+            if(_kbhit()) {
+                char ch = getch();
+
+                switch(ch) {
+                    case 'w' : snake.move(-1, 0); break;
+                    case 'a' : snake.move(0, -1); break;
+                    case 's' : snake.move(1, 0); break;
+                    case 'd' : snake.move(0, 1); break;
+                    case 'q' : isGameOver = true; break;
+                }
             }
         }
 
@@ -138,18 +148,21 @@ class Game {
             system("cls");
         }
 
+        void Run() {
+            while(!isGameOver) {
+                fillBoard();
+                DrawSnake();
+                ClearScreen();
+                printBoard();
+                if(!isGameOver) handleInput();
+            }
+        }
+
 };
 
 
 int main() {
     Game *game;
-
-    while(!isGameOver) {
-        game->ClearScreen   ();
-        game->DrawSnake();
-        game->printBoard();
-        game->handleInput();
-        game->ClearScreen();
-    }
+    game->Run();
     return 0; 
 }
