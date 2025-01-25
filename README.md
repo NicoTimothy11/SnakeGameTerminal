@@ -30,3 +30,5 @@ learning data structs like array/vector is hard but i'll learn a lot
 18/01/2025 - continued to create the projects
 
 - Will finsih tomorrow
+
+- Will finish it asap
