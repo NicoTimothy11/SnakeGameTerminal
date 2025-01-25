@@ -1,6 +1,8 @@
     #include <iostream>
     #include <cstdlib>
     #include <conio.h>
+    #include <chrono>
+    #include <thread>
 
     using namespace std;
 
@@ -133,10 +135,10 @@
                     char ch = getch();
 
                     switch(ch) {
-                        case 'w' : snake.move(-1, 0); break;
-                        case 'a' : snake.move(0, -1); break;
-                        case 's' : snake.move(1, 0); break;
-                        case 'd' : snake.move(0, 1); break;
+                        case 'w' : snake.move(0, -1); break;
+                        case 'a' : snake.move(-1, 0); break;
+                        case 's' : snake.move(0, 1); break;
+                        case 'd' : snake.move(1, 0); break;
                         case 'q' : isGameOver = true; break;
                     }
                 }
@@ -149,10 +151,18 @@
             void Run() {
                 while(!isGameOver) {
                     fillBoard();
+                    DrawSnake();
+                    gameRules();
+                    ClearScreen();
                     printBoard();
+                    if( !isGameOver ) handleInput();
                 }
 
                 cout << "Game Over" << endl;
+            }
+
+            void delay() {
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
             }
 
     };
