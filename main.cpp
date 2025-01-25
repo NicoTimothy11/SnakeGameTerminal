@@ -73,12 +73,11 @@
             static const int columns = 20;
             char board[rows][columns];
             Snake snake;
-            bool isGameOver;
+            bool isGameOver = false;
 
         public:
 
             Game() {
-                isGameOver = false;
                 for (int i = 0; i < 20; i++) {
                     for (int j = 0; j < 20; j++) {
                             board[i][j] = ' ';
@@ -90,9 +89,9 @@
                 for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < columns; j++) {
                 if (i == 0 || i == rows - 1 || j == 0 || j == columns - 1) {
-                    board[i][j] = '#'; // Keep borders
+                    board[i][j] = '#';
                 } else {
-                    board[i][j] = ' '; // Empty space by default
+                    board[i][j] = ' ';
                 }
             }
         }
@@ -150,11 +149,7 @@
             void Run() {
                 while(!isGameOver) {
                     fillBoard();
-                    DrawSnake();
-                    gameRules();
-                    ClearScreen();
                     printBoard();
-                    if(!isGameOver) handleInput();
                 }
 
                 cout << "Game Over" << endl;
