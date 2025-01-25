@@ -6,6 +6,8 @@
 
     using namespace std;
 
+    bool isGameOver = false;
+
     class SnakePart {
         public:
             int x, y;
@@ -75,7 +77,6 @@
             static const int columns = 20;
             char board[rows][columns];
             Snake snake;
-            bool isGameOver = false;
 
         public:
 
@@ -120,6 +121,7 @@
             }
 
             void gameRules() {
+                isGameOver = false;
                 SnakePart& head = snake.getHead();
                 if(head.x == 0 || head.x == columns - 1 || head.y == 0 || head.y == rows -1 ) {
                     isGameOver = true;
@@ -155,14 +157,11 @@
                     gameRules();
                     ClearScreen();
                     printBoard();
-                    if( !isGameOver ) handleInput();
+                    handleInput();
+                    //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 }
 
                 cout << "Game Over" << endl;
-            }
-
-            void delay() {
-                std::this_thread::sleep_for(std::chrono::milliseconds(500));
             }
 
     };
