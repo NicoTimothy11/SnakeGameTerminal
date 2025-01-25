@@ -151,14 +151,15 @@
             }
 
             void Run() {
+                fillBoard();
+
                 while(!isGameOver) {
-                    fillBoard();
+                    printBoard();
                     DrawSnake();
                     gameRules();
                     ClearScreen();
-                    printBoard();
                     handleInput();
-                    //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                    //std::this_thread::sleep_for(std::chrono::milliseconds(3000));
                 }
 
                 cout << "Game Over" << endl;
