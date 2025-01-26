@@ -31,4 +31,4 @@ learning data structs like array/vector is hard but i'll learn a lot
 
 - Will finsih tomorrow
 
-- Will finish it asap
+- Will finish it after my worries im anxious rn
