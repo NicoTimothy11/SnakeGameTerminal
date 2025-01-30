@@ -1,5 +1,5 @@
 # SnakeGameTerminal
-Snake game terminal version
+Snake game terminal versions
 
 
 after i finish this imma move on to create snake game in raylib
