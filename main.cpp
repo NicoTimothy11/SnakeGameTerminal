@@ -8,12 +8,19 @@ using namespace std;
 
 bool isGameOver = false;
 
+class SnakePart {
+    public:
+        int x;
+        int y;
+};
+
 class Snake {
     public:
         static const int SnakeLength = 256;
         int length;
         int snakeX = 5;
         int snakeY = 5;
+        SnakePart body[SnakeLength];
 };
 
 
@@ -58,7 +65,11 @@ class Game {
         }
 
         void DrawSnake() {
-            board[snake.snakeY][snake.snakeX] = '@';
+            //board[snake.snakeY][snake.snakeX] = '@';
+            for(int i = snake.length-1; i > 0; i--) {
+                board[snake.body[i].y][snake.body[i].x] = '*';
+            }
+            board[snake.body[0].y][snake.body[0].x] = '@';
         }
 
         void moveSnake(int dx, int dy) {
