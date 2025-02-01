@@ -12,6 +12,8 @@ class Snake {
     public:
         static const int SnakeLength = 256;
         int length;
+        int snakeX = 5;
+        int snakeY = 5;
 };
 
 
@@ -39,6 +41,9 @@ class Game {
                     if(i == 0 || i == rows - 1 || j == 0 || j == columns - 1) {
                         board[i][j] = '#';
                     }
+                    else {
+                        board[i][j] = ' ';
+                    }
                 }
             }
         }
@@ -52,14 +57,43 @@ class Game {
             }
         }
 
-        void DrawSnake() {}
-            
+        void DrawSnake() {
+            board[snake.snakeY][snake.snakeX] = '@';
+        }
+
+        void moveSnake(int dx, int dy) {
+            snake.snakeX += dx;
+            snake.snakeY += dy;
+        }
+
+        void HandleInput() {
+            char ch = getch();
+
+            switch(ch) {
+                case 'w': moveSnake(0, -1); break;
+                case 's': moveSnake(0, 1); break;
+                case 'a': moveSnake(-1, 0); break;
+                case 'd': moveSnake(1, 0); break; 
+            }
+        }
+        
+        void clearScreen() {
+            system("cls");
+        }
 
     };
 
 
     int main() {
         Game game;
-        game.fillBoard();
-        game.printBoard();
+
+        while(!isGameOver) {
+            game.fillBoard();
+            game.DrawSnake();
+            game.clearScreen();
+            game.printBoard();
+            game.HandleInput();
+        }
+
+        return 0;
     }
