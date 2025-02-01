@@ -33,7 +33,6 @@ class Game {
         Snake snake;
 
     public:
-
         Game() {
             for (int i = 0; i < columns; i++) {
                 for (int j = 0; j < columns; j++) {
@@ -97,6 +96,12 @@ class Game {
 
     int main() {
         Game game;
+        Snake snake;
+        
+        snake.length = 1;
+        snake.body[0].x = 5;
+        snake.body[0].y = 5;
+
 
         while(!isGameOver) {
             game.fillBoard();
