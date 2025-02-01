@@ -72,8 +72,8 @@ class Game {
         }
 
         void moveSnake(int dx, int dy) {
-            snake.snakeX += dx;
-            snake.snakeY += dy;
+            snake.body[0].x = dx;
+            snake.body[1].y = dy;
         }
 
         void HandleInput() {
@@ -100,7 +100,7 @@ class Game {
         
         snake.length = 1;
         snake.body[0].x = 5;
-        snake.body[0].y = 5;
+        snake.body[1].y = 5;
 
 
         while(!isGameOver) {
