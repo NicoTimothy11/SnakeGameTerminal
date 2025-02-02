@@ -18,8 +18,6 @@ class Snake {
     public:
         static const int SnakeLength = 256;
         int length;
-        int snakeX = 5;
-        int snakeY = 5;
         SnakePart body[SnakeLength];
 };
 
@@ -72,8 +70,8 @@ class Game {
         }
 
         void moveSnake(int dx, int dy) {
-            snake.body[0].x = dx;
-            snake.body[1].y = dy;
+            snake.body[0].x += dx;
+            snake.body[0].y += dy;
         }
 
         void HandleInput() {
