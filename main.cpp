@@ -18,6 +18,8 @@ class Snake {
     public:
         static const int SnakeLength = 256;
         int length;
+        int snakeX = 5;
+        int snakeY = 5;
         SnakePart body[SnakeLength];
 };
 
@@ -72,6 +74,9 @@ class Game {
         void moveSnake(int dx, int dy) {
             snake.body[0].x += dx;
             snake.body[0].y += dy;
+
+            //snake.snakeX += dx;
+            //snake.snakeY += dy;
         }
 
         void HandleInput() {
@@ -82,6 +87,7 @@ class Game {
                 case 's': moveSnake(0, 1); break;
                 case 'a': moveSnake(-1, 0); break;
                 case 'd': moveSnake(1, 0); break; 
+                case 'q': isGameOver = true; break;
             }
         }
         
@@ -94,11 +100,6 @@ class Game {
 
     int main() {
         Game game;
-        Snake snake;
-        
-        snake.length = 1;
-        snake.body[0].x = 5;
-        snake.body[1].y = 5;
 
 
         while(!isGameOver) {
