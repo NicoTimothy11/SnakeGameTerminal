@@ -1,8 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <conio.h>
-#include <chrono>
-#include <thread>
 
 using namespace std;
 
@@ -10,8 +8,7 @@ bool isGameOver = false;
 
 class SnakePart {
     public:
-        int x;
-        int y;
+        int x, y;
 };
 
 class Snake {
@@ -33,11 +30,10 @@ class Game {
 
     public:
         Game() {
-            for (int i = 0; i < columns; i++) {
-                for (int j = 0; j < columns; j++) {
-                        board[i][j] = ' ';
-                    }
-                }
+            snake.length = 1;
+            snake.body[0].x = 5;
+            snake.body[1].y = 5; 
+            fillBoard();
             }
         
         void fillBoard() {
@@ -64,7 +60,7 @@ class Game {
 
         void DrawSnake() {
             //board[snake.snakeY][snake.snakeX] = '@';
-            for(int i = snake.length-1; i > 0; i--) {
+            for(int i = 1; i < snake.length; i++) {
                 board[snake.body[i].y][snake.body[i].x] = '*';
             }
             board[snake.body[0].y][snake.body[0].x] = '@';
@@ -74,8 +70,6 @@ class Game {
             snake.body[0].x += dx;
             snake.body[0].y += dy;
 
-            //snake.snakeX += dx;
-            //snake.snakeY += dy;
         }
 
         void HandleInput() {
@@ -99,11 +93,6 @@ class Game {
 
     int main() {
         Game game;
-        Snake snake;
-
-        snake.length = 1;
-        snake.body[0].x = 5;
-        snake.body[1].y = 5;
 
         while(!isGameOver) {
             game.fillBoard();
