@@ -30,11 +30,13 @@ class Game {
 
     public:
         Game() {
-            snake.length = 1;
+            snake.length = 2;
             snake.body[0].x = 5;
-            snake.body[1].y = 5; 
+            snake.body[0].y = 5;
+            snake.body[1].x = 5;
+            snake.body[1].y = 6;
             fillBoard();
-            }
+        }
         
         void fillBoard() {
             for(int i = 0; i < rows; i++) {
@@ -67,6 +69,9 @@ class Game {
         }
 
         void moveSnake(int dx, int dy) {
+            for(int i = 1; i < snake.length; i++ ) {
+                snake.body[i] = snake.body[i-1];
+            }
             snake.body[0].x += dx;
             snake.body[0].y += dy;
 
