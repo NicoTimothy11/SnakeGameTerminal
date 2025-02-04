@@ -61,7 +61,6 @@ class Game {
         }
 
         void DrawSnake() {
-            //board[snake.snakeY][snake.snakeX] = '@';
             for(int i = 1; i < snake.length; i++) {
                 board[snake.body[i].y][snake.body[i].x] = '*';
             }
@@ -91,6 +90,13 @@ class Game {
         
         void clearScreen() {
             system("cls");
+        }
+
+        void GameRules() {
+            if(snake.body[0].x == 0 || snake.body[0].y == columns - 1 
+            || snake.body[0].y == 0 || snake.body[0].y == rows - 1) {
+                isGameOver = true;
+            }
         }
 
     };
