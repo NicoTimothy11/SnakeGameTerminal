@@ -107,6 +107,12 @@ class Game {
                 }
             }
 
+            for(int i = 0; i < snake.length; i++) {
+                if(snake.body[0].x == snake.body[i].x && snake.body[0].y == snake.body[i].y) {
+                    isGameOver = true;
+                }
+            }
+
             if(snake.body[0].x == 0 || snake.body[0].x == columns - 1 
             || snake.body[0].y == 0 || snake.body[0].y == rows - 1) {
                 isGameOver = true;
