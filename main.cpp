@@ -111,14 +111,14 @@ class Game {
                 if(snake.body[0].x == snake.body[i].x && snake.body[0].y == snake.body[i].y) {
                     isGameOver = true;
                     cout << "Game Over, Snake bit itself";
-                    cout << "Score: " << snake.length;
+                    cout << "Score: " << snake.length << endl;
                 }
             }
 
             if(snake.body[0].x == 0 || snake.body[0].x == columns - 1 
             || snake.body[0].y == 0 || snake.body[0].y == rows - 1) {
                 isGameOver = true;
-                cout << "Game Over, Snake hit the wall.";
+                cout << "Game Over, Snake hit the wall." << endl;
                 cout << "Score: " << snake.length;
             }
         }
