@@ -2,9 +2,9 @@
 #include <cstdlib>
 #include <conio.h>
 
-using namespace std;
-
 bool isGameOver = false;
+
+using namespace std;
 
 class Food {
 public:
@@ -39,8 +39,6 @@ class Game {
     public:
         Game() {
             fillBoard();
-            SnakeSetUp();
-            FoodSetUp();
         }
         
         void fillBoard() {
@@ -73,7 +71,8 @@ class Game {
         }
 
         void moveSnake(int dx, int dy) {
-            for(int i = 1; i < snake.length; i++ ) {
+
+            for(int i = snake.length-1; i > 0; i-- ) {
                 snake.body[i] = snake.body[i-1];
             }
             snake.body[0].x += dx;
@@ -107,7 +106,7 @@ class Game {
                 }
             }
 
-            for(int i = 0; i < snake.length; i++) {
+            for(int i = 1; i < snake.length; i++) {
                 if(snake.body[0].x == snake.body[i].x && snake.body[0].y == snake.body[i].y) {
                     isGameOver = true;
                 }
@@ -136,7 +135,7 @@ class Game {
         void DrawFood() {
             for(int i = 0; i < foods; i++) {
                 if(!food[i].consumed) {
-                    board[food[i].y * columns][food[i].x] = '+';
+                    board[food[i].y][food[i].x] = '+';
                 }
             }
         }
@@ -146,15 +145,19 @@ class Game {
 
     int main() {
         Game game;
+        srand(time(0));
+
+        game.SnakeSetUp();
+        game.FoodSetUp();
 
         while(!isGameOver) {
             game.fillBoard();
-            game.DrawSnake();
+            game.DrawFood();
             game.DrawSnake();
             game.clearScreen();
             game.printBoard();
             game.GameRules();
-            if(!isGameOver) game.HandleInput();
+            game.HandleInput();
         }
 
         return 0;
