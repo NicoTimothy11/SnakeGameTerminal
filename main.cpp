@@ -24,6 +24,7 @@ class Game {
     protected:
         static const int rows = 20;
         static const int columns = 20;
+        static const int foods = 50; 
         char board[rows][columns];
         Snake snake;
 
@@ -93,11 +94,15 @@ class Game {
         }
 
         void GameRules() {
-            if(snake.body[0].x == 0 || snake.body[0].y == columns - 1 
+            if(snake.body[0].x == 0 || snake.body[0].x == columns - 1 
             || snake.body[0].y == 0 || snake.body[0].y == rows - 1) {
                 isGameOver = true;
             }
         }
+
+        void FoodSetUp() {
+
+        } 
 
     };
 
@@ -111,6 +116,7 @@ class Game {
             game.clearScreen();
             game.printBoard();
             game.HandleInput();
+            game.GameRules();
         }
 
         return 0;
