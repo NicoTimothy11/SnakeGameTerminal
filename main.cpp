@@ -39,6 +39,8 @@ class Game {
     public:
         Game() {
             fillBoard();
+            SnakeSetUp();
+            FoodSetUp();
         }
         
         void fillBoard() {
@@ -126,7 +128,7 @@ class Game {
         }
 
         void SnakeSetUp() {
-            snake.length = 1;
+            snake.length = 2;
             snake.body[0].x = 1 + rand() % (columns - 2);
             snake.body[0].y = 1 + rand() % (rows - 2);
         }
@@ -137,8 +139,6 @@ class Game {
     int main() {
         Game game;
 
-        game.SnakeSetUp();
-        game.FoodSetUp();
         while(!isGameOver) {
             game.fillBoard();
             game.DrawSnake();
