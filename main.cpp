@@ -38,11 +38,8 @@ class Game {
 
     public:
         Game() {
-            snake.length = 2;
-            snake.body[0].x = 5;
-            snake.body[0].y = 5;
-            snake.body[1].x = 5;
-            snake.body[1].y = 6;
+            SnakeSetUp();
+            FoodSetUp();
             fillBoard();
         }
         
@@ -101,6 +98,15 @@ class Game {
         }
 
         void GameRules() {
+            for(int i = 0; i < foods; i++) {
+                if(!food[i].consumed) {
+                    if(food[i].x == snake.body[0].x && food[i].y == snake.body[0].y) {
+                        food[i].consumed = 1;
+                        snake.length++;
+                    }
+                }
+            }
+
             if(snake.body[0].x == 0 || snake.body[0].x == columns - 1 
             || snake.body[0].y == 0 || snake.body[0].y == rows - 1) {
                 isGameOver = true;
