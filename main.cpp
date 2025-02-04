@@ -109,12 +109,14 @@ class Game {
             for(int i = 1; i < snake.length; i++) {
                 if(snake.body[0].x == snake.body[i].x && snake.body[0].y == snake.body[i].y) {
                     isGameOver = true;
+                    cout << "Game Over, Snake bit itself";
                 }
             }
 
             if(snake.body[0].x == 0 || snake.body[0].x == columns - 1 
             || snake.body[0].y == 0 || snake.body[0].y == rows - 1) {
                 isGameOver = true;
+                cout << "Game Over, Snake hit the wall.";
             }
         }
 
@@ -157,7 +159,7 @@ class Game {
             game.clearScreen();
             game.printBoard();
             game.GameRules();
-            game.HandleInput();
+            if(!isGameOver) game.HandleInput();
         }
 
         return 0;
