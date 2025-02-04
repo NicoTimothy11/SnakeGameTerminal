@@ -102,6 +102,7 @@ class Game {
                     if(food[i].x == snake.body[0].x && food[i].y == snake.body[0].y) {
                         food[i].consumed = 1;
                         snake.length++;
+                        cout << "Food eaten! Snake length: " << snake.length << endl;
                     }
                 }
             }
@@ -110,6 +111,7 @@ class Game {
                 if(snake.body[0].x == snake.body[i].x && snake.body[0].y == snake.body[i].y) {
                     isGameOver = true;
                     cout << "Game Over, Snake bit itself";
+                    cout << "Score: " << snake.length;
                 }
             }
 
@@ -117,6 +119,7 @@ class Game {
             || snake.body[0].y == 0 || snake.body[0].y == rows - 1) {
                 isGameOver = true;
                 cout << "Game Over, Snake hit the wall.";
+                cout << "Score: " << snake.length;
             }
         }
 
@@ -132,6 +135,7 @@ class Game {
             snake.length = 1;
             snake.body[0].x = 1 + rand() % (columns - 2);
             snake.body[0].y = 1 + rand() % (rows - 2);
+            cout << "Initial Snake Position: (" << snake.body[0].x << ", " << snake.body[0].y << ")" << endl;
         }
 
         void DrawFood() {
