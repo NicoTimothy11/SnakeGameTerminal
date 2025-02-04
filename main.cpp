@@ -6,9 +6,15 @@ using namespace std;
 
 bool isGameOver = false;
 
+class Food {
+public:
+    int x, y;
+    int consumed;
+};
+
 class SnakePart {
-    public:
-        int x, y;
+public:
+    int x, y;
 };
 
 class Snake {
@@ -26,6 +32,7 @@ class Game {
         static const int columns = 20;
         static const int foods = 50; 
         char board[rows][columns];
+        Food food[foods];
         Snake snake;
 
 
@@ -101,7 +108,11 @@ class Game {
         }
 
         void FoodSetUp() {
-
+            for(int i = 0; i < foods; i++) {
+                food[i].x = 1 + rand() % (columns - 2);
+                food[i].y = 1 + rand() % (rows - 2);
+                food[i].consumed = 0;
+            }
         } 
 
     };
