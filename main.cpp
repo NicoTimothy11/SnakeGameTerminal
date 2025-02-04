@@ -38,8 +38,6 @@ class Game {
 
     public:
         Game() {
-            SnakeSetUp();
-            FoodSetUp();
             fillBoard();
         }
         
@@ -139,6 +137,8 @@ class Game {
     int main() {
         Game game;
 
+        game.SnakeSetUp();
+        game.FoodSetUp();
         while(!isGameOver) {
             game.fillBoard();
             game.DrawSnake();
