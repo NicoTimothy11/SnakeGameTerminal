@@ -113,7 +113,13 @@ class Game {
                 food[i].y = 1 + rand() % (rows - 2);
                 food[i].consumed = 0;
             }
-        } 
+        }
+
+        void SnakeSetUp() {
+            snake.length = 1;
+            snake.body[0].x = 1 + rand() % (columns - 2);
+            snake.body[0].y = 1 + rand() % (rows - 2);
+        }
 
     };
 
