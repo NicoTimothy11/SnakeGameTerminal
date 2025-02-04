@@ -128,9 +128,17 @@ class Game {
         }
 
         void SnakeSetUp() {
-            snake.length = 2;
+            snake.length = 1;
             snake.body[0].x = 1 + rand() % (columns - 2);
             snake.body[0].y = 1 + rand() % (rows - 2);
+        }
+
+        void DrawFood() {
+            for(int i = 0; i < foods; i++) {
+                if(!food[i].consumed) {
+                    board[food[i].y * columns][food[i].x] = '+';
+                }
+            }
         }
 
     };
@@ -142,10 +150,11 @@ class Game {
         while(!isGameOver) {
             game.fillBoard();
             game.DrawSnake();
+            game.DrawSnake();
             game.clearScreen();
             game.printBoard();
-            game.HandleInput();
             game.GameRules();
+            if(!isGameOver) game.HandleInput();
         }
 
         return 0;
