@@ -28,8 +28,8 @@ class Snake {
 
 class Game {
     protected:
-        static const int rows = 20;
-        static const int columns = 20;
+        static const int rows = 50;
+        static const int columns = 50;
         static const int foods = 50; 
         char board[rows][columns];
         Food food[foods];
